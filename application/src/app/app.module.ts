@@ -11,10 +11,14 @@ import { FbdbService } from '../app/services/firebase/database/fbdb.service';
 import { AuthService } from '../app/services/firebase/authentication/auth.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { NavbarComponent } from './header/navbar/navbar.component';
+import { ProjectsComponent } from './main/projects/projects/projects.component';
+import { CardProjectComponent } from './main/projects/card-project/card-project.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProjectsComponent,
+    CardProjectComponent
   ],
   imports: [
     BrowserModule,

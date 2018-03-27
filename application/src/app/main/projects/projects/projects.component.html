@@ -1,0 +1,61 @@
+<div class="row justify-content-center" id="carrusel">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <ngb-carousel>
+          <ng-template ngbSlide>
+            <img src="" alt="First slide">
+            <div class="carousel-caption">
+              <h1>Busca</h1>
+              <p>Te ofrecemos un monton de proyectos punteros.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img src=""  alt="Second slide">
+            <div class="carousel-caption">
+              <h1>Encuentra</h1>
+              <p>Pincha sobre el proyecto que te llame la atención.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img src="" alt="Third slide">
+            <div class="carousel-caption">
+              <h1>Financia</h1>
+              <p>Ayuda al proyecto que te guste financiandolo</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+</div>
+<div class="row" id="selector" style="margin-top: 10px">
+  <div class="col-12">
+      <ngb-tabset [justify]="currentJustify">
+          <ngb-tab title="Destacados">
+            <ng-template ngbTabContent>
+                <div class="row" *ngFor="let proyecto of proyectos | async" id="proyectos">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <app-card-project [proyecto]='proyecto'></app-card-project>
+                     </div>
+                   </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle><b>Nuevos</b></ng-template>
+            <ng-template ngbTabContent>
+              <div class="row" *ngFor="let proyecto of proyectos | async" id="proyectos">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <app-card-project [proyecto]='proyecto'></app-card-project>
+                 </div>
+               </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Cerca de Meta">
+            <ng-template ngbTabContent>
+                <div class="row" *ngFor="let proyecto of proyectos | async" id="proyectos">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <app-card-project [proyecto]='proyecto'></app-card-project>
+                     </div>
+                   </div>
+              </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+    </div>
+  </div>
