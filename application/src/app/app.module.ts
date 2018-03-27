@@ -9,6 +9,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FbdbService } from '../app/services/firebase/database/fbdb.service';
 import { AuthService } from '../app/services/firebase/authentication/auth.service';
+import { AppRoutingModule } from './/app-routing.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,8 @@ import { AuthService } from '../app/services/firebase/authentication/auth.servic
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AppRoutingModule
     ],
   providers: [FbdbService, AuthService],
   bootstrap: [AppComponent]
