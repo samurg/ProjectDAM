@@ -1,0 +1,30 @@
+<nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler-right navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+    &#9776;
+  </button>
+  <a class="navbar-brand" href="#">ProyectoDAM</a>
+  <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link"  (click)="isCollapsed = !isCollapsed">Proyectos</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" (click)="isCollapsed = !isCollapsed">Crea tu proyecto</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" (click)="isCollapsed = !isCollapsed">Inversiones</a>
+      </li>
+      <li class="nav-item"  *ngIf="authService.user | async;else login">
+        <a class="nav-link" (click)="isCollapsed = !isCollapsed; logout()">LogOut</a>
+      </li>
+      <ng-template #login>
+        <li class="nav-item">
+          <a class="nav-link" (click)="isCollapsed = !isCollapsed; logout()">LogIn</a>
+        </li>
+      </ng-template>
+    </ul>
+    <span class="navbar-text" *ngIf="authService.user | async">
+      Bienvenido {{ (authService.user | async)?.displayName }} !
+    </span>
+  </div>
+</nav>

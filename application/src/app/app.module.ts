@@ -10,9 +10,11 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FbdbService } from '../app/services/firebase/database/fbdb.service';
 import { AuthService } from '../app/services/firebase/authentication/auth.service';
 import { AppRoutingModule } from './/app-routing.module';
+import { NavbarComponent } from './header/navbar/navbar.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
