@@ -5,11 +5,12 @@ import * as firebase from 'firebase/app';
 
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { FbdbService } from '../database/fbdb.service';
 
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-  constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
+  constructor(private _db: FbdbService, private firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = firebaseAuth.authState;
    }
 
@@ -20,6 +21,7 @@ export class AuthService {
      .then(value => {
        console.log('Usuario creado!! => ', value);
        console.log('Su id es: ' + value.uid);
+       this._db.increaseUsers();
      })
      .catch(err => {
         console.log('Algo ha fallado en singup => ', err.message);
@@ -34,7 +36,7 @@ export class AuthService {
         console.log();
         console.log('Nice, it worked!');
         console.log('ID:' + value.uid);
-        /*this.router.navigate(['/proyects']);*/
+        this.router.navigate(['/projects']);
       })
       .catch(err => {
         console.log('Algo ha fallado en login => ', err.message);
@@ -52,12 +54,10 @@ export class AuthService {
     .auth
     .signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(value => {
       console.log('Nice, it worked!');
-      /*this.router.navigate(['/proyects']);*/
+      this.router.navigate(['/projects']);
     })
     .catch(err => {
       console.log('Algo ha fallado en login google=> ', err.message);
     });
-    console.log(user);
   }
-
 }

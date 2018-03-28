@@ -7,6 +7,8 @@ import { forEach } from '@firebase/util';
 @Injectable()
 export class FbdbService {
   proyectosRef: AngularFireList<any>;
+  numusuarios = this.fire.database.ref('/numusuarios');
+  listausuarios = this.fire.list('/usuarios');
   constructor(private fire: AngularFireDatabase) {
     this.proyectosRef = this.fire.list('/proyectos');
     this.a();
@@ -22,5 +24,12 @@ export class FbdbService {
     this.getAllProjects().forEach(element => {
       console.log(element[0]);
     });
+  }
+
+  increaseUsers() {
+    this.numusuarios.transaction(function(currentCount) {
+      return currentCount + 1;
+    }).then(_ => console.log('success'))
+    .catch(err => console.log(err, 'error!'));
   }
 }

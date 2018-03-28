@@ -1,0 +1,14 @@
+.single-home:hover img {
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.5);
+}
+
+.single-home img {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+img{
+    max-height: 200px;
+}
