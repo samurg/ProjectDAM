@@ -31,17 +31,10 @@ export class LoginComponent implements OnInit {
     .catch(err => console.log(err, 'no pasas!')));
   }
 
-  registrarUsuario(username, email, pass1, pass2, address) {
-    this.listausuarios.push({nombre: username, email: email});
-  }
-
   signup() {
     if (this.password1 === this.password2) {
       this.authService.signup(this.email1, this.password);
       this.email1 = this.password1 = '';
-      let uid: string;
-      this.authService.user.subscribe( u => uid = u.uid);
-      this.listausuarios.push({nombre: this.username, email: this.email, uid: uid});
     }
   }
 
