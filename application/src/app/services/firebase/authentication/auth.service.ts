@@ -19,9 +19,9 @@ export class AuthService {
      .auth
      .createUserWithEmailAndPassword(email, password)
      .then(value => {
-       console.log('Usuario creado!! => ', value);
-       console.log('Su id es: ' + value.uid);
        this._db.increaseUsers();
+       this.user = this.firebaseAuth.authState;
+       this._db.registerUser(this.user);
      })
      .catch(err => {
         console.log('Algo ha fallado en singup => ', err.message);
@@ -33,9 +33,7 @@ export class AuthService {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        console.log();
-        console.log('Nice, it worked!');
-        console.log('ID:' + value.uid);
+        this.user = this.firebaseAuth.authState;
         this.router.navigate(['/projects']);
       })
       .catch(err => {
@@ -47,6 +45,7 @@ export class AuthService {
     this.firebaseAuth
       .auth
       .signOut();
+      this.user = this.firebaseAuth.authState;
   }
 
   loginGoogle() {
@@ -54,6 +53,7 @@ export class AuthService {
     .auth
     .signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(value => {
       console.log('Nice, it worked!');
+      this.user = this.firebaseAuth.authState;
       this.router.navigate(['/projects']);
     })
     .catch(err => {

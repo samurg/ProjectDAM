@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Project } from '../../../models/project';
 import { forEach } from '@firebase/util';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class FbdbService {
@@ -31,5 +32,11 @@ export class FbdbService {
       return currentCount + 1;
     }).then(_ => console.log('success'))
     .catch(err => console.log(err, 'error!'));
+  }
+
+  registerUser(user: Observable<firebase.User>) {
+    user.subscribe(e =>
+      this.listausuarios.push({name: e.displayName, email: e.email, uid: e.uid})
+    );
   }
 }
