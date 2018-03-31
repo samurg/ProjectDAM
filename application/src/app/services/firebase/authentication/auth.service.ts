@@ -21,7 +21,7 @@ export class AuthService {
      .then(value => {
        this._db.increaseUsers();
        this.user = this.firebaseAuth.authState;
-       this._db.registerUser(this.user);
+       this._db.registerUserFire(this.user);
      })
      .catch(err => {
         console.log('Algo ha fallado en singup => ', err.message);
@@ -54,7 +54,14 @@ export class AuthService {
     .signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(value => {
       console.log('Nice, it worked!');
       this.user = this.firebaseAuth.authState;
-      this.router.navigate(['/projects']);
+      this.user.subscribe(e => {
+        this._db.getUserRegistered(e.uid).forEach(u => {
+          if (u.length === 0) {
+            this._db.registerUserFire(this.user);
+          }
+        });
+      });
+      this.router.navigate(['projects']);
     })
     .catch(err => {
       console.log('Algo ha fallado en login google=> ', err.message);

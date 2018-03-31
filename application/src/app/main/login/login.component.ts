@@ -4,6 +4,8 @@ import { AuthService } from '../../services/firebase/authentication/auth.service
 import { Router } from '@angular/router';
 import { AngularFireList } from 'angularfire2/database';
 import { FbdbService } from '../../services/firebase/database/fbdb.service';
+import { User } from '../../models/user';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +29,8 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.authService.user.subscribe( u => u.getIdToken().then(_ => this.router.navigate(['/projects']))
-    .catch(err => console.log(err, 'no pasas!')));
+    /*this.authService.user.subscribe( u => u.getIdToken().then(_ => this.router.navigate(['/projects']))
+    .catch(err => console.log(err, 'no pasas!')));*/
   }
 
   signup() {
