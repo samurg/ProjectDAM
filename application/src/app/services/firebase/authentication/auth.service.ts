@@ -11,7 +11,11 @@ import { FbdbService } from '../database/fbdb.service';
 export class AuthService {
   user: Observable<firebase.User>;
   constructor(private _db: FbdbService, private firebaseAuth: AngularFireAuth, private router: Router) {
-    this.user = firebaseAuth.authState;
+    firebaseAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = firebaseAuth.authState;
+      }
+    });
    }
 
    signup(email: string, password: string) {

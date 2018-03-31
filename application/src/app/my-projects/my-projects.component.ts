@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/firebase/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-projects',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProjectsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, private router: Router ) {
+      if (this.auth.user === undefined) {
+          router.navigate(['/login']);
+      }
+   }
 
   ngOnInit() {
   }
