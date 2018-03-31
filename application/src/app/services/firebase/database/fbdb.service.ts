@@ -11,6 +11,7 @@ export class FbdbService {
   proyectosRef: AngularFireList<any>;
   numusuarios = this.fire.database.ref('/numusuarios');
   listausuarios = this.fire.list('/usuarios');
+  projects: Project[];
   constructor(private fire: AngularFireDatabase) {
     this.proyectosRef = this.fire.list('/proyectos');
   }
@@ -50,4 +51,29 @@ export class FbdbService {
       return p.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
   }
+
+  getRefUserProjects(uid: string): Observable<any[]> {
+    const userRef = this.fire.list(`proyectousuario/${uid}`);
+    return userRef.snapshotChanges().map(p => {
+     return p.map(c => ({ key: c.payload.key }));
+    });
+  }
+
+  getUserProjects(uid: string) {
+    this.projects = [];
+    this.getRefUserProjects(uid).forEach(ref => {
+       ref.forEach(r => {
+         this.getProject(r.key).forEach(p => {
+          this.projects.push(p);
+         });
+      });
+    });
+  }
+
+  getProject(key: string): Observable<Project> {
+    return this.fire.object(`proyectos/${key}`).snapshotChanges().map(p => {
+      return {key: p.payload.key, ...p.payload.val()};
+   });
+  }
+
 }
