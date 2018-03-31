@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProjectsComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    // tslint:disable-next-line:no-debugger
+    debugger;
+   }
 
   ngOnInit() {
   }
