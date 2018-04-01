@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FbdbService } from '../../../services/firebase/database/fbdb.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _db: FbdbService) { }
 
   ngOnInit() {
   }
 
+  setFilter(filter: string) {
+    this._db.setFilterProjects(filter);
+  }
 }
