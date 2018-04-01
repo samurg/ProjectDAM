@@ -3,6 +3,7 @@ export class Project {
         public categoria: string,
         public contractaddress: string,
         public description: string,
+        public estado: string,
         public fechafin: Date,
         public fechainicio: Date,
         public finalizado: boolean,

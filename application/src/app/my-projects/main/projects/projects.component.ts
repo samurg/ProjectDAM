@@ -24,7 +24,13 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects(): Project[] {
-    return this._db.projects;
+    if (this._db.filterProject === 'all') {
+      return this._db.projects;
+    } else if (this._db.filterProject === 'created') {
+      return this._db.projects.filter(project => project.estado === 'created').map(p => p);
+    } else if (this._db.filterProject === 'deployed') {
+      return this._db.projects.filter(project => project.estado === 'deployed').map(p => p);
+    }
 
   }
 }

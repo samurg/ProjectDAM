@@ -12,7 +12,7 @@ export class FbdbService {
   numusuarios = this.fire.database.ref('/numusuarios');
   listausuarios = this.fire.list('/usuarios');
   projects: Project[];
-  filterProject: string;
+  filterProject = 'all';
   constructor(private fire: AngularFireDatabase) {
     this.proyectosRef = this.fire.list('/proyectos');
   }
