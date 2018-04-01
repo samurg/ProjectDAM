@@ -1,0 +1,17 @@
+<ul class="nav justify-content-center">
+  <li class="nav-item" [routerLinkActive]="['active']">
+    <a class="nav-link " href="#">Requeriments</a>
+  </li>
+  <div ngbDropdown class="d-inline-block">
+    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Projects</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button class="dropdown-item">All projects</button>
+      <button class="dropdown-item">Deployed</button>
+      <button class="dropdown-item">Created</button>
+    </div>
+  </div>
+ 
+  <li class="nav-item" [routerLinkActive]="['active']">
+    <a class="nav-link" href="#">Create New Project</a>
+  </li>
+</ul>
