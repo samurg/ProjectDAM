@@ -14,6 +14,8 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { ProjectsComponent } from './main/projects/projects/projects.component';
 import { CardProjectComponent } from './main/projects/card-project/card-project.component';
 import { LoginComponent } from './main/login/login.component';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { LoginComponent } from './main/login/login.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
     ],
   providers: [FbdbService, AuthService],
   bootstrap: [AppComponent]

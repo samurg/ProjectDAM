@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/firebase/authentication/auth.service';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { AngularFireList } from 'angularfire2/database';
 import { FbdbService } from '../../services/firebase/database/fbdb.service';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-login',
@@ -23,14 +24,20 @@ export class LoginComponent implements OnInit {
   password2: string;
   address: string;
   public listausuarios: AngularFireList<any>;
-  constructor(public authService: AuthService, config: NgbTabsetConfig, private router: Router, private _db: FbdbService) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
+    public authService: AuthService, config: NgbTabsetConfig, private router: Router, private _db: FbdbService) {
     this.listausuarios = this._db.listausuarios;
     this.disable = false;
+    this.toastr.setRootViewContainerRef(vcr);
    }
 
   ngOnInit() {
     /*this.authService.user.subscribe( u => u.getIdToken().then(_ => this.router.navigate(['/projects']))
     .catch(err => console.log(err, 'no pasas!')));*/
+    this.showSuccess();
+  }
+  showSuccess() {
+    this.toastr.success('You are awesome!', 'Success!');
   }
 
   signup() {
