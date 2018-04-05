@@ -7,6 +7,7 @@ import { FbdbService } from '../../services/firebase/database/fbdb.service';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
 import { ToastsManager } from 'ng2-toastr';
+import { EthService } from '../../services/ethereum/eth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   password2: string;
   address: string;
   public listausuarios: AngularFireList<any>;
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
+  constructor(private _eth: EthService, public toastr: ToastsManager, vcr: ViewContainerRef,
     public authService: AuthService, config: NgbTabsetConfig, private router: Router, private _db: FbdbService) {
     this.listausuarios = this._db.listausuarios;
     this.disable = false;

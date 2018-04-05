@@ -16,6 +16,7 @@ import { CardProjectComponent } from './main/projects/card-project/card-project.
 import { LoginComponent } from './main/login/login.component';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EthService } from '../app/services/ethereum/eth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ToastModule.forRoot()
     ],
-  providers: [FbdbService, AuthService],
+  providers: [FbdbService, AuthService, EthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
