@@ -1,7 +1,6 @@
 <div class="container">
   <div *ngFor="let project of getProjects()">
     <app-item-project [project]="project"
-    [routerLink]="['/projects/project', project.key]"
     routerLinkActivated="active"></app-item-project>
   </div>
 </div>
