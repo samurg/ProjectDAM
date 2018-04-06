@@ -17,13 +17,15 @@ import { LoginComponent } from './main/login/login.component';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EthService } from '../app/services/ethereum/eth.service';
+import { ProjectDetailComponent } from './main/projects/project-detail/project-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ProjectsComponent,
     CardProjectComponent,
-    LoginComponent
+    LoginComponent,
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,6 @@
   <div class="card-block">
     <h4 class="card-title">{{proyecto.titulo}}</h4>
     <p class="card-text">{{proyecto.subtitulo}}</p>
-    <a href="#" class="btn btn-primary">Go to project</a>
+    <a [routerLink]="['/projects/project', proyecto.key]" class="btn btn-primary">Go to project</a>
   </div>
 </div>
