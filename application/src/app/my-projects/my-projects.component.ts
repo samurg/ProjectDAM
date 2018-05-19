@@ -10,12 +10,11 @@ import { Router } from '@angular/router';
 export class MyProjectsComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router ) {
-      if (this.auth.user === undefined) {
-          router.navigate(['/login']);
-      }
    }
 
   ngOnInit() {
+    if (this.auth.user === undefined) {
+      this.router.navigate(['/login']);
+    }
   }
-
 }

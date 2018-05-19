@@ -7,6 +7,7 @@ import { NavComponent } from './header/nav/nav.component';
 import { ProjectsComponent } from './main/projects/projects.component';
 import { ItemProjectComponent } from './main/item-project/item-project.component';
 import { MyprojectDetailComponent } from './main/myproject-detail/myproject-detail.component';
+import { CreateNewProjectComponent } from './main/create-new-project/create-new-project.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MyprojectDetailComponent } from './main/myproject-detail/myproject-deta
     NavComponent,
     ProjectsComponent,
     ItemProjectComponent,
-    MyprojectDetailComponent
+    MyprojectDetailComponent,
+    CreateNewProjectComponent
   ]
 })
 export class MyProjectsModule { }
