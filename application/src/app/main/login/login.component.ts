@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   password2: string;
   address: string;
   public listausuarios: AngularFireList<any>;
-  constructor(private _eth: EthService, public toastr: ToastsManager, vcr: ViewContainerRef,
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef,
     public authService: AuthService, config: NgbTabsetConfig, private router: Router, private _db: FbdbService) {
     this.listausuarios = this._db.listausuarios;
     this.disable = false;
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     /*this.authService.user.subscribe( u => u.getIdToken().then(_ => this.router.navigate(['/projects']))
     .catch(err => console.log(err, 'no pasas!')));*/
-    this.showSuccess();
+    /*this.showSuccess();*/
   }
   showSuccess() {
     this.toastr.success('You are awesome!', 'Success!');
