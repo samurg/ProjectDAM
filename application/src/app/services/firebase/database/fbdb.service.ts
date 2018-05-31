@@ -13,6 +13,9 @@ export class FbdbService {
   listausuarios = this.fire.list('/usuarios');
   projects: Project[];
   filterProject = 'all';
+  tokenRef = this.fire.list('/tokens');
+  crowsaleRef = this.fire.list('/crowsales');
+  proyectousuario = this.fire.list('proyectousuario');
   constructor(private fire: AngularFireDatabase) {
     this.proyectosRef = this.fire.list('/proyectos');
   }
@@ -79,5 +82,33 @@ export class FbdbService {
 
   setFilterProjects(filter: string) {
     this.filterProject = filter;
+  }
+
+  addProyecto(user: string, title: string, subtitle: string,
+    description: string, image: string, video: string,
+    uidToken: string, uidCrowsale): string {
+    const promise =  this.proyectosRef.push({
+      idUser: user, titulo: title, subtitulo: subtitle,
+      description: description, imagen: image, urlvideo: video,
+      idCrowsale: uidCrowsale, idToken: uidToken, estado: 'CREATED'});
+    return promise.key;
+  }
+
+  addToken(user: string, initialSupply: number, tokenName: string, tokenSymbol: string) {
+    const promise = this.tokenRef.push({user: user, initialSupply: initialSupply,
+      tokenName: tokenName, tokenSymbol: tokenSymbol});
+      return promise.key;
+  }
+
+  addCrowsale(user: string, fundingGoalInEthers: number, durationInMinutes: number,
+    etherCostOfEachToken: number): string {
+      const promise = this.crowsaleRef.push({user: user, fundingGoalInEthers: fundingGoalInEthers,
+        durationInMinutes: durationInMinutes, etherCostOfEachToken: etherCostOfEachToken});
+        return promise.key;
+  }
+
+  addUserProject(uid: string, projectKey: string) {
+    const userRef = this.fire.list(`proyectousuario/${uid}`);
+    userRef.set(projectKey, {projectKey: true});
   }
 }

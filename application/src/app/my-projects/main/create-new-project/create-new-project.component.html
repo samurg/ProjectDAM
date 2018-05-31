@@ -1,3 +1,96 @@
-<p>
-  create-new-project works!
-</p>
+<div class="row justify-content-center" id="createProject" style="margin-top: 5%">
+  <div class="col-1">
+    <h3>Token</h3>
+  </div>
+</div>
+<div class="row justify-content-center" id="createProject" style="margin-top: 3%">
+    <form class="form-inline" style="margin-top: 1%;">
+
+      <div class="input-group col-12">
+        <div class="input-group-addon">Initial Supply__</div>
+        <input name="initialSupply" type="number" class="form-control" [(ngModel)]=initialSupply placeholder="initialSupply">
+      </div>
+
+
+      <div class="input-group col-12">
+        <div class="input-group-addon">Token Name___</div>
+        <input name="tokenName" type="text" class="form-control" [(ngModel)]=tokenName placeholder="tokenName">
+      </div>
+
+      <div class="input-group col-12">
+        <div class="input-group-addon">Token Symbol_</div>
+        <input name="tokenSymbol" type="text" class="form-control" [(ngModel)]=tokenSymbol placeholder="tokenSymbol">
+      </div>
+    </form>
+  
+</div>
+
+
+<div class="row justify-content-center" id="createProject" style="margin-top: 3%;">
+  <div class="col-1">
+    <h3>Crowsale</h3>
+  </div>
+</div>
+
+<div class="row justify-content-center" id="createProject">
+  <form class="form-inline" style="margin-top: 1%;">
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Funding Goal In Ethers____</div>
+      <input name="fundingGoalInEthers" type="number" class="form-control" [(ngModel)]=fundingGoalInEthers placeholder="fundingGoalInEthers">
+    </div>
+
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Duration In Minutes______</div>
+      <input name="durationInMinutes" type="number" class="form-control" [(ngModel)]=durationInMinutes placeholder="durationInMinutes">
+    </div>
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Ether Cost Of Each Token_</div>
+      <input name="etherCostOfEachToken" type="number" class="form-control" [(ngModel)]=etherCostOfEachToken placeholder="etherCostOfEachToken">
+    </div>
+  </form>
+
+</div>
+
+
+<div class="row justify-content-center" id="createProject" style="margin-top: 3%;">
+  <div class="col-1">
+    <h3>Project</h3>
+  </div>
+</div>
+
+
+<div class="row justify-content-center" id="createProject">
+  <form class="form-inline" style="margin-top: 1%;">
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Title_________</div>
+      <input name="title" type="text" class="form-control" [(ngModel)]=title placeholder="title">
+    </div>
+
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Subtitle_____</div>
+      <input name="subtitle" type="text" class="form-control" [(ngModel)]=subtitle placeholder="subtitle">
+    </div>
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Description_</div>
+      <input name="description" type="text" class="form-control" [(ngModel)]=description placeholder="description">
+    </div>
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Image______</div>
+      <input name="image" type="text" class="form-control" [(ngModel)]=image placeholder="image">
+    </div>
+
+    <div class="input-group col-12">
+      <div class="input-group-addon">Video_______</div>
+      <input name="video" type="text" class="form-control" [(ngModel)]=video placeholder="video">
+    </div>
+  </form>
+  <button class="btn btn-danger col-12" (click)="cancel()" style="margin-top: 2%; margin-bottom: 1%">Cancel</button>
+  <button class="btn btn-info col-12" (click)="createProject()" style="margin-top: 1%; margin-bottom: 5%">Save</button>
+</div>

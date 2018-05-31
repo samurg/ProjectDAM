@@ -8,12 +8,16 @@ import { ProjectsComponent } from './main/projects/projects.component';
 import { ItemProjectComponent } from './main/item-project/item-project.component';
 import { MyprojectDetailComponent } from './main/myproject-detail/myproject-detail.component';
 import { CreateNewProjectComponent } from './main/create-new-project/create-new-project.component';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
   imports: [
     CommonModule,
     MyProjectsRoutingModule,
-    NgbModule.forRoot()
+    FormsModule,
+    NgbModule.forRoot(),
+    ToastModule.forRoot()
   ],
   declarations: [
     MyProjectsComponent,

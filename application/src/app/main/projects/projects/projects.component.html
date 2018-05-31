@@ -30,8 +30,8 @@
       <ngb-tabset [justify]="currentJustify">
           <ngb-tab title="Destacados">
             <ng-template ngbTabContent>
-                <div class="row" *ngFor="let proyecto of proyectos | async" id="proyectos">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="row" id="proyectos">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectos | async">
                         <app-card-project [proyecto]='proyecto'></app-card-project>
                      </div>
                    </div>
@@ -40,8 +40,8 @@
           <ngb-tab>
             <ng-template ngbTabTitle><b>Nuevos</b></ng-template>
             <ng-template ngbTabContent>
-              <div class="row" *ngFor="let proyecto of proyectos | async" id="proyectos">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="row"  id="proyectos">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectos | async">
                     <app-card-project [proyecto]='proyecto'></app-card-project>
                  </div>
                </div>
@@ -49,8 +49,8 @@
           </ngb-tab>
           <ngb-tab title="Cerca de Meta">
             <ng-template ngbTabContent>
-                <div class="row" *ngFor="let proyecto of proyectos | async" id="proyectos">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="row" id="proyectos">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectos | async">
                         <app-card-project [proyecto]='proyecto'></app-card-project>
                      </div>
                    </div>
