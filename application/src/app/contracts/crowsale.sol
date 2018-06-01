@@ -1,7 +1,7 @@
 pragma solidity ^0.4.16;
 
 interface token {
-    function transfer(address receiver, uint amount);
+    function transfer(address receiver, uint amount) external;
 }
 
 contract Crowdsale {
@@ -23,13 +23,13 @@ contract Crowdsale {
      *
      * Setup the owner
      */
-    function Crowdsale(
+    constructor(
         address ifSuccessfulSendTo,
         uint fundingGoalInEthers,
         uint durationInMinutes,
         uint etherCostOfEachToken,
         address addressOfTokenUsedAsReward
-    ) {
+    )public {
         beneficiary = ifSuccessfulSendTo;
         fundingGoal = fundingGoalInEthers * 1 ether;
         deadline = now + durationInMinutes * 1 minutes;
@@ -42,13 +42,13 @@ contract Crowdsale {
      *
      * The function without name is the default function that is called whenever anyone sends funds to a contract
      */
-    function () payable {
+    function () public payable {
         require(!crowdsaleClosed);
         uint amount = msg.value;
         balanceOf[msg.sender] += amount;
         amountRaised += amount;
         tokenReward.transfer(msg.sender, amount / price);
-        FundTransfer(msg.sender, amount, true);
+        emit FundTransfer(msg.sender, amount, true);
     }
 
     modifier afterDeadline() { if (now >= deadline) _; }
@@ -58,10 +58,10 @@ contract Crowdsale {
      *
      * Checks if the goal or time limit has been reached and ends the campaign
      */
-    function checkGoalReached() afterDeadline {
+    function checkGoalReached()public afterDeadline {
         if (amountRaised >= fundingGoal){
             fundingGoalReached = true;
-            GoalReached(beneficiary, amountRaised);
+            emit GoalReached(beneficiary, amountRaised);
         }
         crowdsaleClosed = true;
     }
@@ -74,13 +74,13 @@ contract Crowdsale {
      * sends the entire amount to the beneficiary. If goal was not reached, each contributor can withdraw
      * the amount they contributed.
      */
-    function safeWithdrawal() afterDeadline {
+    function safeWithdrawal() public afterDeadline {
         if (!fundingGoalReached) {
             uint amount = balanceOf[msg.sender];
             balanceOf[msg.sender] = 0;
             if (amount > 0) {
                 if (msg.sender.send(amount)) {
-                    FundTransfer(msg.sender, amount, false);
+                    emit FundTransfer(msg.sender, amount, false);
                 } else {
                     balanceOf[msg.sender] = amount;
                 }
@@ -89,7 +89,7 @@ contract Crowdsale {
 
         if (fundingGoalReached && beneficiary == msg.sender) {
             if (beneficiary.send(amountRaised)) {
-                FundTransfer(beneficiary, amountRaised, false);
+                emit FundTransfer(beneficiary, amountRaised, false);
             } else {
                 //If we fail to send the funds to beneficiary, unlock funders balance
                 fundingGoalReached = false;
