@@ -44,6 +44,7 @@ export class CreateNewProjectComponent implements OnInit {
     });
     /*this.clear();*/
     this.toastr.success('Project created', 'Success!');
+    this.cancel();
   }
 
   createToken(user: string): string {
