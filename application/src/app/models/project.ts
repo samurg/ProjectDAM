@@ -8,6 +8,7 @@ export class Project {
         public fechainicio: Date,
         public finalizado: boolean,
         public idCrowsale: string,
+        public idToken: string,
         public idUser: string,
         public imagen: string,
         public subtitulo: string,
