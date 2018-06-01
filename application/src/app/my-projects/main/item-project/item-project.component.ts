@@ -2,6 +2,9 @@ import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Project } from '../../../models/project';
 import { EthService } from '../../../services/ethereum/eth.service';
 import { ToastsManager } from 'ng2-toastr';
+import { FbdbService } from '../../../services/firebase/database/fbdb.service';
+import { Token } from '../../../models/token';
+import { Crowsale } from '../../../models/crowsale';
 
 @Component({
   selector: 'app-item-project',
@@ -11,7 +14,7 @@ import { ToastsManager } from 'ng2-toastr';
 export class ItemProjectComponent implements OnInit {
   @Input() project: Project;
   estado: boolean;
-  constructor(private _eth: EthService, public toastr: ToastsManager, public vcr: ViewContainerRef) {
+  constructor(private _db: FbdbService, private _eth: EthService, public toastr: ToastsManager, public vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -26,23 +29,52 @@ export class ItemProjectComponent implements OnInit {
       this.estado = false;
     }
   }
+
   edit() {
   }
 
-  deploy() {
+  initDeploy() {
    if (this.comprobarDespliegue()) {
-    this.toastr.warning('Wait one minute, please, token is deploying', 'Warning!');
-    this._eth.desplegar(this.project)
-    .then((res) => {
-      console.log(res);
-      this.toastr.success('Contract mined! address: '
-      + res.address
-      + ' transactionHash: '
-      + res.transactionHash, 'Success!');
+    this._db.getTokenByKey(this.project.idToken).subscribe(token => {
+      this.deployToken(token);
     });
    }
   }
+  deployToken(token: Token) {
+    this._eth.desployToken(token)
+      .then((res) => {
+        this.toastr.success('Contract mined! address: '
+        + res.address
+        + ' transactionHash: '
+        + res.transactionHash, 'Success!');
+        this.initDeployCrowsale(res.address);
+      });
+  }
 
+  initDeployCrowsale(tokenAddres: string) {
+    this._db.getCrowsaleByKey(this.project.idCrowsale).subscribe(crowsale => {
+      this.deployCrowsale(crowsale, tokenAddres);
+    });
+  }
+
+  deployCrowsale(crowsale: Crowsale, tokenAddres: string) {
+    this._eth.desployCrowsale(crowsale, tokenAddres)
+      .then((res) => {
+        this.toastr.success('Contract mined! address: '
+        + res.address
+        + ' transactionHash: '
+        + res.transactionHash, 'Success!');
+        this.saveAllData(tokenAddres, res.address);
+      });
+  }
+
+  saveAllData(tokenAddress, crowsaleAddress) {
+    console.log('TOKEN: ', tokenAddress, '; CROWSALE: ', crowsaleAddress, 'guardando........');
+    this._db.saveDeployToken(this.project.idToken, tokenAddress);
+    this._db.saveDeployCrowsale(this.project.idCrowsale, crowsaleAddress);
+    this._db.updateEstadoProject(this.project.key);
+    console.log('todo guardado');
+  }
   remove() {}
 
   comprobarDespliegue() {

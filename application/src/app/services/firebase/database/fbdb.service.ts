@@ -5,6 +5,8 @@ import { Project } from '../../../models/project';
 import { forEach } from '@firebase/util';
 import * as firebase from 'firebase/app';
 import { User } from '../../../models/user';
+import { Token } from '../../../models/token';
+import { Crowsale } from '../../../models/crowsale';
 
 @Injectable()
 export class FbdbService {
@@ -96,15 +98,38 @@ export class FbdbService {
 
   addToken(user: string, initialSupply: number, tokenName: string, tokenSymbol: string) {
     const promise = this.tokenRef.push({user: user, initialSupply: initialSupply,
-      tokenName: tokenName, tokenSymbol: tokenSymbol});
+      tokenName: tokenName, tokenSymbol: tokenSymbol, contractAddress: ''});
       return promise.key;
+  }
+
+  getTokenByKey(uidToken: string): Observable<Token> {
+    return this.fire.object(`tokens/${uidToken}`).snapshotChanges().map(p => {
+      return {key: p.payload.key, ...p.payload.val()};
+    });
+  }
+  saveDeployToken(uidToken: string, contracAddress: string) {
+    this.fire.object(`tokens/${uidToken}`).update({contractAddress: contracAddress});
+  }
+
+  getCrowsaleByKey(uidCrowsale: string): Observable<Crowsale> {
+    return this.fire.object(`crowsales/${uidCrowsale}`).snapshotChanges().map(p => {
+      return {key: p.payload.key, ...p.payload.val()};
+    });
   }
 
   addCrowsale(user: string, fundingGoalInEthers: number, durationInMinutes: number,
     etherCostOfEachToken: number): string {
       const promise = this.crowsaleRef.push({user: user, fundingGoalInEthers: fundingGoalInEthers,
-        durationInMinutes: durationInMinutes, etherCostOfEachToken: etherCostOfEachToken});
+        durationInMinutes: durationInMinutes, etherCostOfEachToken: etherCostOfEachToken, contractAddress: ''});
         return promise.key;
+  }
+
+  saveDeployCrowsale(uidCrowsale: string, contracAddress: string) {
+    this.fire.object(`crowsales/${uidCrowsale}`).update({contractAddress: contracAddress});
+  }
+
+  updateEstadoProject(key: string) {
+    this.fire.object(`proyectos/${key}`).update({estado: 'DEPLOYED'});
   }
 
   addUserProject(uid: string, projectKey: string) {
