@@ -1,12 +1,7 @@
 export class Project {
     constructor(public key: string,
-        public categoria: string,
-        public contractaddress: string,
         public description: string,
         public estado: string,
-        public fechafin: Date,
-        public fechainicio: Date,
-        public finalizado: boolean,
         public idCrowsale: string,
         public idToken: string,
         public idUser: string,
