@@ -11,25 +11,24 @@ import { Project } from '../../../models/project';
 export class ProjectsComponent implements OnInit {
   uid: string;
   constructor(private _db: FbdbService, private _auth: AuthService) {
-    if (this._auth.user) {
-      this._auth.user.subscribe(u => {
-        if (u) {
-          this.uid = u.uid;
-        }});
-    }
    }
 
   ngOnInit() {
-    this._db.getUserProjects(this.uid);
+    if (this._auth.user) {
+      this._auth.user.subscribe(u => {
+        if (u) {
+          this._db.getUserProjects(u.uid);
+        }});
+    }
   }
 
   getProjects(): Project[] {
     if (this._db.filterProject === 'all') {
       return this._db.projects;
-    } else if (this._db.filterProject === 'CREATED') {
-      return this._db.projects.filter(project => project.estado === 'created').map(p => p);
-    } else if (this._db.filterProject === 'DEPLOYED') {
-      return this._db.projects.filter(project => project.estado === 'deployed').map(p => p);
+    } else if (this._db.filterProject === 'created') {
+      return this._db.projects.filter(project => project.estado === 'CREATED').map(p => p);
+    } else if (this._db.filterProject === 'deployed') {
+      return this._db.projects.filter(project => project.estado === 'DEPLOYED').map(p => p);
     }
 
   }
