@@ -28,33 +28,24 @@
 <div class="row" id="selector" style="margin-top: 10px">
   <div class="col-12">
       <ngb-tabset [justify]="currentJustify">
-          <ngb-tab title="Destacados">
+          <ngb-tab title="Desplegados">
             <ng-template ngbTabContent>
                 <div class="row" id="proyectos">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectos | async">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectosDesplegados">
                         <app-card-project [proyecto]='proyecto'></app-card-project>
                      </div>
                    </div>
             </ng-template>
           </ngb-tab>
           <ngb-tab>
-            <ng-template ngbTabTitle><b>Nuevos</b></ng-template>
+            <ng-template ngbTabTitle><b>Creados</b></ng-template>
             <ng-template ngbTabContent>
               <div class="row"  id="proyectos">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectos | async">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectosCreados">
                     <app-card-project [proyecto]='proyecto'></app-card-project>
                  </div>
                </div>
             </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Cerca de Meta">
-            <ng-template ngbTabContent>
-                <div class="row" id="proyectos">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let proyecto of proyectos | async">
-                        <app-card-project [proyecto]='proyecto'></app-card-project>
-                     </div>
-                   </div>
-              </ng-template>
           </ngb-tab>
         </ngb-tabset>
     </div>

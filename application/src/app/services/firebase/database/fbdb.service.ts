@@ -28,6 +28,12 @@ export class FbdbService {
     });
   }
 
+  getProjectsByEstado(estado: string): Observable<Project[]> {
+    const lista = this.fire.list('/proyectos', ref => ref.orderByChild('estado').equalTo(estado));
+    return lista.snapshotChanges().map(p => {
+      return p.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+  }
   a() {
     this.getAllProjects().forEach(element => {
       console.log(element[0]);
