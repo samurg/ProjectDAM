@@ -18,6 +18,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EthService } from '../app/services/ethereum/eth.service';
 import { ProjectDetailComponent } from './main/projects/project-detail/project-detail.component';
+import { LoadingModule, ANIMATION_TYPES  } from 'ngx-loading';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,15 @@ import { ProjectDetailComponent } from './main/projects/project-detail/project-d
     AngularFireAuthModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
+      tertiaryColour: '#ffffff'
+  })
     ],
   providers: [FbdbService, AuthService, EthService],
   bootstrap: [AppComponent]

@@ -13,6 +13,7 @@ export class ProjectsComponent implements OnInit {
   currentJustify = 'center';
   public proyectosDesplegados: Project[];
   public proyectosCreados: Project[];
+  public loading;
   constructor(config: NgbCarouselConfig, private _db: FbdbService) {
     config.interval = 2500;
     config.wrap = true; /* vuelta a empezar*/
@@ -25,15 +26,19 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProyectosCreados() {
+    this.loading = true;
     this._db.getProjectsByEstado('CREATED').subscribe(
       (proyectos => {
+        this.loading = false;
         this.proyectosCreados = proyectos;
       }));
   }
 
   getProyectosDesplegados() {
+    this.loading = true;
     this._db.getProjectsByEstado('DEPLOYED').subscribe(
       (proyectos => {
+        this.loading = false;
         this.proyectosDesplegados = proyectos;
       }));
   }
