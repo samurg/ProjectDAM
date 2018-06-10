@@ -41,10 +41,9 @@ export class ItemProjectComponent implements OnInit {
   deployToken(token: Token) {
     this._eth.deployToken(token)
       .then((res) => {
-        this.toastr.success('Contract mined! address: '
+        this.toastr.success('Contract Token mined! address: '
         + res.address
-        + ' transactionHash: '
-        + res.transactionHash, 'Success!');
+        , 'Success!');
         this.initDeployCrowsale(res.address);
       });
   }
@@ -58,10 +57,9 @@ export class ItemProjectComponent implements OnInit {
   deployCrowsale(crowsale: Crowsale, tokenAddres: string) {
     this._eth.desployCrowsale(crowsale, tokenAddres)
       .then((res) => {
-        this.toastr.success('Contract mined! address: '
+        this.toastr.success('Contract Crowsale mined! address: '
         + res.address
-        + ' transactionHash: '
-        + res.transactionHash, 'Success!');
+        , 'Success!');
         this.saveAllData(tokenAddres, res.address);
       });
   }
