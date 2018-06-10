@@ -1,7 +1,6 @@
 <div class="row inline justify-content-between single-home" style="margin-top: 10px;">
   <div class="col-xs-2 col-sm-2 col-md-4 col-lg-4">{{project.titulo}}</div>
   <button [routerLink]="[project.key]" class="btn btn-success col-xs-2 col-sm-2 col-md-1 col-lg-1">SHOW</button>
-  <button class="btn btn-info col-xs-2 col-sm-2 col-md-2 col-lg-2" (click)="edit()">EDIT</button>
   <button class="btn btn-warning col-xs-2 col-sm-2 col-md-2 col-lg-2" (click)="initDeploy()" [disabled]="!estado">DEPLOY</button>
-  <button class="btn btn-danger col-xs-2 col-sm-2 col-md-2 col-lg-2" (click)="remove()">REMOVE</button>
+  <button class="btn btn-danger col-xs-2 col-sm-2 col-md-2 col-lg-2" (click)="remove()" [disabled]="!estado">REMOVE</button>
 </div>

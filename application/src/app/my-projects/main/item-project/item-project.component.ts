@@ -30,9 +30,6 @@ export class ItemProjectComponent implements OnInit {
     }
   }
 
-  edit() {
-  }
-
   initDeploy() {
    if (this.comprobarDespliegue()) {
     this._db.getTokenByKey(this.project.idToken).subscribe(token => {
@@ -40,8 +37,9 @@ export class ItemProjectComponent implements OnInit {
     });
    }
   }
+
   deployToken(token: Token) {
-    this._eth.desployToken(token)
+    this._eth.deployToken(token)
       .then((res) => {
         this.toastr.success('Contract mined! address: '
         + res.address
@@ -75,7 +73,9 @@ export class ItemProjectComponent implements OnInit {
     this._db.updateEstadoProject(this.project.key);
     console.log('todo guardado');
   }
-  remove() {}
+  remove() {
+    this._db.removeProject(this.project);
+  }
 
   comprobarDespliegue() {
     this._eth.startEthService();

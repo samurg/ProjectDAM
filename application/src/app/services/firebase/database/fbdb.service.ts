@@ -34,11 +34,6 @@ export class FbdbService {
       return p.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
   }
-  a() {
-    this.getAllProjects().forEach(element => {
-      console.log(element[0]);
-    });
-  }
 
   increaseUsers() {
     this.numusuarios.transaction(function(currentCount) {
@@ -75,7 +70,7 @@ export class FbdbService {
     this.projects = [];
     this.getRefUserProjects(uid).forEach(ref => {
        ref.forEach(r => {
-         this.getProject(r.key).forEach(p => {
+         this.getProject(r.key).subscribe(p => {
           this.projects.push(p);
          });
       });
@@ -141,5 +136,31 @@ export class FbdbService {
   addUserProject(uid: string, projectKey: string) {
     const userRef = this.fire.list(`proyectousuario/${uid}`);
     userRef.set(projectKey, {projectKey: true});
+  }
+
+  removeProject(project: Project) {
+    this.removeProyectoUsuario(project)
+    .then(_ => {
+      this._removeProject(project)
+      .then((res) => {
+        this._removeToken(project);
+        this._removeCrowsale(project);
+      });
+    })
+    .catch(err => console.log(err, 'Remove project error'));
+  }
+
+  removeProyectoUsuario(project: Project) {
+    return this.fire.object(`proyectousuario/${project.idUser}/${project.key}`).remove();
+  }
+
+  _removeProject(project: Project) {
+    return this.fire.object(`proyectos/${project.key}`).remove();
+  }
+  _removeToken(project: Project) {
+    return this.fire.object(`tokens/${project.idToken}`).remove();
+  }
+  _removeCrowsale(project: Project) {
+    return this.fire.object(`crowsales/${project.idCrowsale}`).remove();
   }
 }
