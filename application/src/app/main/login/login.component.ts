@@ -22,23 +22,22 @@ export class LoginComponent implements OnInit {
   username: string;
   password1: string;
   password2: string;
-  address: string;
-  public listausuarios: AngularFireList<any>;
-  constructor(public authService: AuthService, config: NgbTabsetConfig, private router: Router, private _db: FbdbService) {
-    this.listausuarios = this._db.listausuarios;
-    this.disable = false;
+  constructor(public authService: AuthService, config: NgbTabsetConfig,
+    private router: Router, private _db: FbdbService,
+    public toastr: ToastsManager, public vcr: ViewContainerRef) {
+      this.toastr.setRootViewContainerRef(vcr);
    }
 
   ngOnInit() {
-    /*this.authService.user.subscribe( u => u.getIdToken().then(_ => this.router.navigate(['/projects']))
-    .catch(err => console.log(err, 'no pasas!')));*/
-    /*this.showSuccess();*/
   }
 
   signup() {
     if (this.password1 === this.password2) {
-      this.authService.signup(this.email1, this.password);
-      this.email1 = this.password1 = '';
+      this.authService.signup(this.email1, this.password1);
+      this.username = this.email1 = this.password1 = this.password2 = '';
+      this.toastr.success('you are registered', 'Success!');
+    } else {
+      this.toastr.error('Passwords do not match', 'Error!');
     }
   }
 

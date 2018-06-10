@@ -15,11 +15,6 @@
                     <input name="password" type="password" class="form-control" [(ngModel)]="password" placeholder="Password">
                   </div>
                   
-                  <div class="form-check col-12" style="margin-top: 2%;">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox"> Remember me
-                    </label>
-                  </div>
                   <button class="btn btn-info col-12" (click)="login()" [disabled]="!email || !password" style="margin-top: 2%;">Login</button>
                   <button class="btn btn-danger col-12" (click)="loginGoogle()" style="margin-top: 2%;">GOOGLE</button>
                   <button class="btn btn-warning col-12" (click)="logout()" *ngIf="authService.user | async" style="margin-top: 2%;">Logout</button>
@@ -50,13 +45,9 @@
                       <input name="password2" type="password" class="form-control" [(ngModel)]="password2" id="password2" placeholder=" Password">
                     </div>
 
-                    <div class="input-group col-12" style="margin-bottom: 2%;">
-                        <div class="input-group-addon">A</div>
-                        <input name="address" type="text" class="form-control" [(ngModel)]="address" id="wallet" placeholder="Wallet Address">
-                      </div>
-                      <button class="btn btn-primary" (click)="signup()" [disabled]="disable" style="margin-top: 2%;">
-                        Signup
-                      </button>
+                  <button class="btn btn-primary" (click)="signup()" style="margin-top: 2%;">
+                    Signup
+                  </button>
                   </form>
           </ng-template>
         </ngb-tab>
