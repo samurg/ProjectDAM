@@ -21,11 +21,14 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProyectosDesplegados();
-    this.getProyectosCreados();
+    this._getProyectosDesplegados();
+    this._getProyectosCreados();
   }
 
-  getProyectosCreados() {
+  /**
+   * Obtiene los proyectos creados
+   */
+  _getProyectosCreados() {
     this.loading = true;
     this._db.getProjectsByEstado('CREATED').subscribe(
       (proyectos => {
@@ -34,7 +37,10 @@ export class ProjectsComponent implements OnInit {
       }));
   }
 
-  getProyectosDesplegados() {
+  /**
+   * Obtiene los proyectos desplegados
+   */
+  _getProyectosDesplegados() {
     this.loading = true;
     this._db.getProjectsByEstado('DEPLOYED').subscribe(
       (proyectos => {

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/firebase/authentication/auth.service';
 import { Router } from '@angular/router';
 import { AngularFireList } from 'angularfire2/database';
@@ -15,22 +15,26 @@ import { ToastsManager } from 'ng2-toastr';
   providers: [NgbTabsetConfig]
 })
 export class LoginComponent implements OnInit {
-  disable: boolean;
+
   email: string;
   email1: string;
   password: string;
   username: string;
   password1: string;
   password2: string;
+
   constructor(public authService: AuthService, config: NgbTabsetConfig,
     private router: Router, private _db: FbdbService,
     public toastr: ToastsManager, public vcr: ViewContainerRef) {
-      this.toastr.setRootViewContainerRef(vcr);
-   }
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
   }
 
+  /**
+   * Registro por mail y password
+   */
   signup() {
     if (this.password1 === this.password2) {
       this.authService.signup(this.email1, this.password1);
@@ -41,6 +45,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**
+   * Login por mail y password
+   */
   login() {
     this.authService.login(this.email, this.password);
     this.email = this.password = '';
@@ -50,6 +57,9 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
   }
 
+  /**
+   * Login con google
+   */
   loginGoogle() {
     this.authService.loginGoogle();
   }
