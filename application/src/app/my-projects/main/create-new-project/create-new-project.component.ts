@@ -36,24 +36,27 @@ export class CreateNewProjectComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Guarda el proyecto
+   */
   createProject() {
     this.authService.user.subscribe( user => {
-      const uidToken = this.createToken(user.uid);
-      const uidCrowsale = this.createCrowsale(user.uid);
+      const uidToken = this._createToken(user.uid);
+      const uidCrowsale = this._createCrowsale(user.uid);
       const uidProject = this._db.addProyecto(user.uid, this.title, this.subtitle,
         this.description, this.image, this.video, uidToken, uidCrowsale, this.cantidadmin, this.recompensa);
         this._db.addUserProject(user.uid, uidProject);
     });
-    /*this.clear();*/
+
     this.toastr.success('Project created', 'Success!');
     this.cancel();
   }
 
-  createToken(user: string): string {
+  _createToken(user: string): string {
     return this._db.addToken(user, this.initialSupply, this.tokenName, this.tokenSymbol);
   }
 
-  createCrowsale(user: string): string {
+  _createCrowsale(user: string): string {
       return this._db.addCrowsale(user, this.fundingGoalInEthers, this.durationInMinutes, this.etherCostOfEachToken);
   }
 
@@ -61,17 +64,4 @@ export class CreateNewProjectComponent implements OnInit {
     this.router.navigate(['myprojects']);
   }
 
-  clear() {
-    this.initialSupply = null;
-    this.tokenName = null;
-    this.tokenSymbol = null;
-    this.fundingGoalInEthers = null;
-    this.durationInMinutes = null;
-    this.etherCostOfEachToken = null;
-    this.title = null;
-    this.subtitle = null;
-    this.description = null;
-    this.image = null;
-    this.video = null;
-  }
 }

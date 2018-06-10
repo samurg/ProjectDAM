@@ -13,6 +13,7 @@ export class MyProjectsComponent implements OnInit {
    }
 
   ngOnInit() {
+    /** Para acceder a este modulo hay que estar registrado */
     if (this.auth.user === undefined) {
       this.router.navigate(['/login']);
     }

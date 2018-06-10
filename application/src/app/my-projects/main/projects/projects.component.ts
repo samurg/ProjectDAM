@@ -9,11 +9,12 @@ import { Project } from '../../../models/project';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  uid: string;
+
   constructor(private _db: FbdbService, private _auth: AuthService) {
    }
 
   ngOnInit() {
+    /** Almacena todos los proyectos de un usuario */
     if (this._auth.user) {
       this._auth.user.subscribe(u => {
         if (u) {
@@ -22,6 +23,9 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
+  /**
+   * Retorna los proyectos segun el filtro.
+   */
   getProjects(): Project[] {
     if (this._db.filterProject === 'all') {
       return this._db.projects;

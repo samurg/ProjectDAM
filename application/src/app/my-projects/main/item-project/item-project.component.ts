@@ -14,7 +14,8 @@ import { Crowsale } from '../../../models/crowsale';
 export class ItemProjectComponent implements OnInit {
   @Input() project: Project;
   estado: boolean;
-  constructor(private _db: FbdbService, private _eth: EthService, public toastr: ToastsManager, public vcr: ViewContainerRef) {
+  constructor(private _db: FbdbService, private _eth: EthService,
+    public toastr: ToastsManager, public vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -30,51 +31,73 @@ export class ItemProjectComponent implements OnInit {
     }
   }
 
+  /**
+   * Inicia el proceso de despliegue de contratos.
+   */
   initDeploy() {
-   if (this.comprobarDespliegue()) {
-    this._db.getTokenByKey(this.project.idToken).subscribe(token => {
-      this.deployToken(token);
-    });
-   }
+    if (this.comprobarDespliegue()) {
+      this._db.getTokenByKey(this.project.idToken).subscribe(token => {
+        this._deployToken(token);
+      });
+    }
   }
 
-  deployToken(token: Token) {
+  _deployToken(token: Token) {
     this._eth.deployToken(token)
       .then((res) => {
         this.toastr.success('Contract Token mined! address: '
-        + res.address
-        , 'Success!');
+          + res.address
+          , 'Success!');
         this.initDeployCrowsale(res.address);
       });
   }
 
+  /**
+   * Inicia el proceso de despliegue de un crowsale.
+   * @param tokenAddres
+   */
   initDeployCrowsale(tokenAddres: string) {
     this._db.getCrowsaleByKey(this.project.idCrowsale).subscribe(crowsale => {
-      this.deployCrowsale(crowsale, tokenAddres);
+      this._deployCrowsale(crowsale, tokenAddres);
     });
   }
 
-  deployCrowsale(crowsale: Crowsale, tokenAddres: string) {
+  /**
+   * Despliega un Crowsale
+   * @param crowsale
+   * @param tokenAddres
+   */
+  _deployCrowsale(crowsale: Crowsale, tokenAddres: string) {
     this._eth.desployCrowsale(crowsale, tokenAddres)
       .then((res) => {
         this.toastr.success('Contract Crowsale mined! address: '
-        + res.address
-        , 'Success!');
+          + res.address
+          , 'Success!');
         this.saveAllData(tokenAddres, res.address);
       });
   }
 
+  /**
+   * Almacena los datos del despliegue en firebase
+   * @param tokenAddress
+   * @param crowsaleAddress
+   */
   saveAllData(tokenAddress, crowsaleAddress) {
-    console.log('TOKEN: ', tokenAddress, '; CROWSALE: ', crowsaleAddress, 'guardando........');
     this._db.saveDeployToken(this.project.idToken, tokenAddress);
     this._db.saveDeployCrowsale(this.project.idCrowsale, crowsaleAddress);
     this._db.updateEstadoProject(this.project.key);
-    console.log('todo guardado');
   }
+  /**
+   * Borra un proyecto
+   */
   remove() {
     this._db.removeProject(this.project);
   }
 
+  /**
+   * Comprueba que esta conectado a la red ethereum y se lo
+   * notifica al usuario
+   */
   comprobarDespliegue() {
     this._eth.startEthService();
     const res = this._eth.result;

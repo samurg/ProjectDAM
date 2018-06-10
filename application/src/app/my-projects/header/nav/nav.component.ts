@@ -13,6 +13,10 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Modifica el filtro seleccionado
+   * @param filter
+   */
   setFilter(filter: string) {
     this._db.setFilterProjects(filter);
   }
