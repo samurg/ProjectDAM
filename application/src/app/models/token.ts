@@ -4,5 +4,5 @@ export class Token {
         public initialSupply: number,
         public tokenName: string,
         public tokenSymbol: string
-    ) {}
+    ) { }
 }

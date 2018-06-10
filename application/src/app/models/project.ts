@@ -10,6 +10,5 @@ export class Project {
         public recompensa: string,
         public subtitulo: string,
         public titulo: string,
-        public urlvideo: string) {
-     }
+        public urlvideo: string) { }
 }
