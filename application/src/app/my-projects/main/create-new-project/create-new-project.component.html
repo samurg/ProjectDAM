@@ -3,26 +3,20 @@
     <h3>Token</h3>
   </div>
 </div>
-<div class="row justify-content-center" id="createProject" style="margin-top: 3%">
-    <form class="form-inline" style="margin-top: 1%;">
+<div class="row" id="createProject" style="margin-top: 3%">
 
-      <div class="input-group col-12">
-        <div class="input-group-addon">Initial Supply__</div>
-        <input name="initialSupply" type="number" class="form-control" [(ngModel)]=initialSupply placeholder="initialSupply">
-      </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Initial Supply</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="initialSupply" type="number" class="form-control" [(ngModel)]=initialSupply
+    placeholder="initialSupply">
 
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Token Name</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="tokenName" type="text" class="form-control" [(ngModel)]=tokenName
+    placeholder="tokenName">
 
-      <div class="input-group col-12">
-        <div class="input-group-addon">Token Name___</div>
-        <input name="tokenName" type="text" class="form-control" [(ngModel)]=tokenName placeholder="tokenName">
-      </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Token Symbol</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="tokenSymbol" type="text" class="form-control" [(ngModel)]=tokenSymbol
+    placeholder="tokenSymbol">
 
-      <div class="input-group col-12">
-        <div class="input-group-addon">Token Symbol_</div>
-        <input name="tokenSymbol" type="text" class="form-control" [(ngModel)]=tokenSymbol placeholder="tokenSymbol">
-      </div>
-    </form>
-  
 </div>
 
 
@@ -33,74 +27,55 @@
 </div>
 
 <div class="row justify-content-center" id="createProject">
-  <form class="form-inline" style="margin-top: 1%;">
-
-    <div class="input-group col-12">
-      <div class="input-group-addon">Funding Goal In Ethers____</div>
-      <input name="fundingGoalInEthers" type="number" class="form-control" [(ngModel)]=fundingGoalInEthers placeholder="fundingGoalInEthers">
-    </div>
 
 
-    <div class="input-group col-12">
-      <div class="input-group-addon">Duration In Minutes______</div>
-      <input name="durationInMinutes" type="number" class="form-control" [(ngModel)]=durationInMinutes placeholder="durationInMinutes">
-    </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Funding Goal In Ethers</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="fundingGoalInEthers" type="number" class="form-control" [(ngModel)]=fundingGoalInEthers
+    placeholder="fundingGoalInEthers">
 
-    <div class="input-group col-12">
-      <div class="input-group-addon">Ether Cost Of Each Token_</div>
-      <input name="etherCostOfEachToken" type="number" class="form-control" [(ngModel)]=etherCostOfEachToken placeholder="etherCostOfEachToken">
-    </div>
-  </form>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Duration In Minutes</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="durationInMinutes" type="number" class="form-control" [(ngModel)]=durationInMinutes
+    placeholder="durationInMinutes">
+
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Ether Cost Of Each Token</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="etherCostOfEachToken" type="number" class="form-control" [(ngModel)]=etherCostOfEachToken
+    placeholder="etherCostOfEachToken">
 
 </div>
 
-
-<div class="row justify-content-center" id="createProject" style="margin-top: 3%;">
+<div class="row" id="createProject" style="margin-top: 3%;">
   <div class="col-1">
     <h3>Project</h3>
   </div>
 </div>
 
+<div class="row" id="createProject" style="margin-top: 1%;">
 
-<div class="row justify-content-center" id="createProject">
-  <form class="form-inline" style="margin-top: 1%;">
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Title</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="title" type="text" class="form-control" [(ngModel)]=title placeholder="title">
 
-    <div class="input-group col-12">
-      <div class="input-group-addon">Title_________</div>
-      <input name="title" type="text" class="form-control" [(ngModel)]=title placeholder="title">
-    </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Subtitle</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="subtitle" type="text" class="form-control" [(ngModel)]=subtitle
+    placeholder="subtitle">
 
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Description</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="description" type="text" class="form-control" [(ngModel)]=description
+    placeholder="description">
 
-    <div class="input-group col-12">
-      <div class="input-group-addon">Subtitle_____</div>
-      <input name="subtitle" type="text" class="form-control" [(ngModel)]=subtitle placeholder="subtitle">
-    </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Image</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="image" type="url" class="form-control" [(ngModel)]=image placeholder="image">
 
-    <div class="input-group col-12">
-      <div class="input-group-addon">Description_</div>
-      <input name="description" type="text" class="form-control" [(ngModel)]=description placeholder="description">
-    </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Video</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="video" type="utl" class="form-control" [(ngModel)]=video placeholder="video">
 
-    <div class="input-group col-12">
-      <div class="input-group-addon">Image______</div>
-      <input name="image" type="url" class="form-control" [(ngModel)]=image placeholder="image">
-    </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Minimum amount reward</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="cantidadmin" type="number" class="form-control" [(ngModel)]=cantidadmin
+    placeholder="Minimum amount reward">
 
-    <div class="input-group col-12">
-      <div class="input-group-addon">Video_______</div>
-      <input name="video" type="utl" class="form-control" [(ngModel)]=video placeholder="video">
-    </div>
+  <div class="input-group-addon col-xs-12 col-sm-12 col-md-3 col-lg-3">Reward description</div>
+  <input class="col-xs-12 col-sm-12 col-md-8 col-lg-8" name="recompensa" type="text" class="form-control" [(ngModel)]=recompensa
+    placeholder="Reward description">
 
-    <div class="input-group col-12">
-        <div class="input-group-addon">Cantidad Minima_</div>
-        <input name="cantidadmin" type="number" class="form-control" [(ngModel)]=cantidadmin placeholder="cantidad minima de recompensa">
-      </div>
-
-      <div class="input-group col-12">
-          <div class="input-group-addon">Recompensa___</div>
-          <input name="recompensa" type="text" class="form-control" [(ngModel)]=recompensa placeholder="descripcion de la recompensa">
-        </div>
-  </form>
   <button class="btn btn-danger col-12" (click)="cancel()" style="margin-top: 2%; margin-bottom: 1%">Cancel</button>
   <button class="btn btn-info col-12" (click)="createProject()" style="margin-top: 1%; margin-bottom: 5%">Save</button>
 </div>
