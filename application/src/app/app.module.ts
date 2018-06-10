@@ -45,7 +45,7 @@ import { LoadingModule, ANIMATION_TYPES  } from 'ngx-loading';
       primaryColour: '#ffffff',
       secondaryColour: '#ffffff',
       tertiaryColour: '#ffffff'
-  })
+    })
     ],
   providers: [FbdbService, AuthService, EthService],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import { MyprojectDetailComponent } from './main/myproject-detail/myproject-deta
 import { CreateNewProjectComponent } from './main/create-new-project/create-new-project.component';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { LoadingModule, ANIMATION_TYPES  } from 'ngx-loading';
 
 @NgModule({
   imports: [
@@ -17,7 +18,15 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     MyProjectsRoutingModule,
     FormsModule,
     NgbModule.forRoot(),
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
+      tertiaryColour: '#ffffff'
+    })
   ],
   declarations: [
     MyProjectsComponent,

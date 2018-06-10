@@ -1,3 +1,41 @@
-<p>
-  myproject-detail works!
-</p>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+        <span class="badge badge-primary">{{project.estado}}</span>
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-7 col-lg-7">
+        <h1>{{project.titulo}}</h1>
+        <h3>{{project.subtitulo}}</h3>
+        <hr/>
+        <div *ngIf="project.estado === 'DEPLOYED'" style="margin-top: 3px;">
+            <ul>
+                <li>Crowsale: {{crowsale.contractAddress}}</li>
+                <li>Token: {{token.contractAddress}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <img src={{project.imagen}} alt="Image">
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" [src]="video" allowfullscreen></iframe>
+        </div>
+        <hr/>
+        <p>{{project.description}}</p>
+
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="card single-home" style="margin-top:15px;">
+            <h4>What can you get?</h4>
+            <div class="card-block">
+                <h6 class="card-title">Contribute with {{project.cantidadmin}} eth or more</h6>
+                <p class="card-text">{{project.recompensa}}</p>
+                <button class="btn btn-primary" [disabled]="true">Select this reward</button>
+            </div>
+        </div>
+    </div>
+</div>
