@@ -26,6 +26,8 @@ export class CreateNewProjectComponent implements OnInit {
   description: string;
   image: string;
   video: string;
+  cantidadmin: number;
+  recompensa: string;
   constructor(private router: Router, private _db: FbdbService, public authService: AuthService,
     public toastr: ToastsManager, vcr: ViewContainerRef) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -39,7 +41,7 @@ export class CreateNewProjectComponent implements OnInit {
       const uidToken = this.createToken(user.uid);
       const uidCrowsale = this.createCrowsale(user.uid);
       const uidProject = this._db.addProyecto(user.uid, this.title, this.subtitle,
-        this.description, this.image, this.video, uidToken, uidCrowsale);
+        this.description, this.image, this.video, uidToken, uidCrowsale, this.cantidadmin, this.recompensa);
         this._db.addUserProject(user.uid, uidProject);
     });
     /*this.clear();*/

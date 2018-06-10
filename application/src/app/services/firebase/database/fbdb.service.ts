@@ -89,11 +89,12 @@ export class FbdbService {
 
   addProyecto(user: string, title: string, subtitle: string,
     description: string, image: string, video: string,
-    uidToken: string, uidCrowsale): string {
+    uidToken: string, uidCrowsale, cantidadmin: number, recompensa: string): string {
     const promise =  this.proyectosRef.push({
       idUser: user, titulo: title, subtitulo: subtitle,
       description: description, imagen: image, urlvideo: video,
-      idCrowsale: uidCrowsale, idToken: uidToken, estado: 'CREATED'});
+      idCrowsale: uidCrowsale, idToken: uidToken, estado: 'CREATED',
+      cantidadmin: cantidadmin, recompensa: recompensa});
     return promise.key;
   }
 

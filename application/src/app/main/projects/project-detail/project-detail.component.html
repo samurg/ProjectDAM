@@ -30,19 +30,11 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
         <div class="card single-home" style="margin-top:15px;">
-            <img class="card-img-top" src={{project.imagen}} alt="Card image cap">
+            <h4>What can you get?</h4>
             <div class="card-block">
-                <h4 class="card-title">{{project.titulo}}</h4>
-                <p class="card-text">{{project.subtitulo}}</p>
-                <button class="btn btn-primary">GO</button>
-            </div>
-        </div>
-        <div class="card single-home" style="margin-top:15px;">
-            <img class="card-img-top" src={{project.imagen}} alt="Card image cap">
-            <div class="card-block">
-                <h4 class="card-title">{{project.titulo}}</h4>
-                <p class="card-text">{{project.subtitulo}}</p>
-                <button class="btn btn-primary">GO</button>
+                <h6 class="card-title">Contribute with {{project.cantidadmin}} eth or more</h6>
+                <p class="card-text">{{project.recompensa}}</p>
+                <button class="btn btn-primary" [disabled]="project.estado === 'CREATED'">Select this reward</button>
             </div>
         </div>
     </div>

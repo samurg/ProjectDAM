@@ -22,17 +22,7 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this._db.getProject(this._route.snapshot.paramMap.get('key')).subscribe( p => {
-      this.project = new Project(
-        p.key,
-        p.description,
-        p.estado,
-        p.idCrowsale,
-        p.idToken,
-        p.idUser,
-        p.imagen,
-        p.subtitulo,
-        p.titulo,
-        p.urlvideo);
+      this.project = p;
       this.video = this.transform(p.urlvideo);
       this.getToken(p.idToken);
       this.getCrowsale(p.idCrowsale);
