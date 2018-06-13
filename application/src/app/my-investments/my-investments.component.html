@@ -1,3 +1,6 @@
-<p>
-  my-investments works!
-</p>
+<div class="container">
+    <div *ngFor="let investment of investments">
+      <app-item-investment [investment]="investment"
+      routerLinkActivated="active"></app-item-investment>
+    </div>
+  </div>

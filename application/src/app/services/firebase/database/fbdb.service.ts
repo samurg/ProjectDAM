@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 import { User } from '../../../models/user';
 import { Token } from '../../../models/token';
 import { Crowsale } from '../../../models/crowsale';
+import { Investment } from '../../../models/investment';
 
 @Injectable()
 export class FbdbService {
@@ -289,5 +290,18 @@ export class FbdbService {
   addInvest(uid: string, projectKey: string, value: number, hash: string) {
     const inversiones = this.fire.list(`investments/${uid}`);
     return inversiones.push({ idProject: projectKey, value: value, txHash: hash });
+  }
+
+  /**
+   *Retorna un array con las inversiones hechas por un usuario.
+   *
+   * @param userKey identificador usuario
+   */
+  getInvesmentsByUser(userKey: string): Observable<Investment[]> {
+    const inversiones = this.fire.list(`investments/${userKey}`);
+    return inversiones.snapshotChanges().map(p => {
+      return p.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+
   }
 }

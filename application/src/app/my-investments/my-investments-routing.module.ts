@@ -4,7 +4,10 @@ import { MyInvestmentsComponent } from './my-investments.component';
 
 const routes: Routes = [
   {
-    path: '', component: MyInvestmentsComponent
+    path: '', component: MyInvestmentsComponent,
+    children: [
+      {path: '', component: MyInvestmentsComponent}
+    ]
   }
 ];
 
