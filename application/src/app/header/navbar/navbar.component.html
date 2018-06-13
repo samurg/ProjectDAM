@@ -12,7 +12,7 @@
         <a class="nav-link" routerLink="/myprojects" (click)="isCollapsed = !isCollapsed">My projects</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" (click)="isCollapsed = !isCollapsed">My investments</a>
+        <a class="nav-link" routerLink="/myinvestments" (click)="isCollapsed = !isCollapsed">My investments</a>
       </li>
       <li class="nav-item"  *ngIf="authService.user | async;else login">
         <a class="nav-link" routerLink="/projects" (click)="isCollapsed = !isCollapsed; logout()">LogOut</a>

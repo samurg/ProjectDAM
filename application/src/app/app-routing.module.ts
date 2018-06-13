@@ -4,6 +4,7 @@ import { ProjectsComponent } from './main/projects/projects/projects.component';
 import { LoginComponent } from './main/login/login.component';
 import { MyProjectsModule} from './my-projects/my-projects.module';
 import { ProjectDetailComponent } from './main/projects/project-detail/project-detail.component';
+import { MyInvestmentsModule } from './my-investments/my-investments.module';
 
 
 const appRoutes =  [
@@ -11,6 +12,7 @@ const appRoutes =  [
   {path: 'projects', component: ProjectsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'myprojects', loadChildren: () => MyProjectsModule},
+  {path: 'myinvestments', loadChildren: () => MyInvestmentsModule},
   {path: 'projects/project/:key', component: ProjectDetailComponent},
   {path: '**', component: ProjectsComponent}
 ];
