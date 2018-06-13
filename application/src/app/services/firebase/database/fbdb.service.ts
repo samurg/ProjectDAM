@@ -278,4 +278,16 @@ export class FbdbService {
   _removeCrowsale(project: Project) {
     return this.fire.object(`crowsales/${project.idCrowsale}`).remove();
   }
+
+  /**
+   * Add Inversiones por usuario
+   * @param uid id usuario
+   * @param projectKey id proyecto
+   * @param value cantidad invertida
+   * @param hash transaccion
+   */
+  addInvest(uid: string, projectKey: string, value: number, hash: string) {
+    const inversiones = this.fire.list(`investments/${uid}`);
+    return inversiones.push({ idProject: projectKey, value: value, txHash: hash });
+  }
 }

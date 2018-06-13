@@ -34,7 +34,11 @@
             <div class="card-block">
                 <h6 class="card-title">Contribute with {{project.cantidadmin}} eth or more</h6>
                 <p class="card-text">{{project.recompensa}}</p>
-                <button class="btn btn-primary" [disabled]="project.estado === 'CREATED'">Select this reward</button>
+                <input name="value" type="number" class="form-control" [(ngModel)]=value placeholder="eth quantity">
+                <hr/>
+                <button class="btn btn-primary" [disabled]="project.estado === 'CREATED'" (click)="invest(crowsale.contractAddress, value)">
+                    Select this reward
+                </button>
             </div>
         </div>
     </div>
