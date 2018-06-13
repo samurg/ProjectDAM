@@ -80,7 +80,7 @@ export class ProjectDetailComponent implements OnInit {
       if (this._comprobarAutentificacion() && this._comprobarNetwork()) {
         this._eth.invest(address, value)
         .then((res) => {
-          if (res === 'resolve') {
+          if (res) {
             console.log('respuesta invest', res);
             this.toastr.success('SUCCSESSFUL INVEST', 'Success!');
             this._almacenarDatosInversion(value, res.toString());

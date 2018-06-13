@@ -126,11 +126,9 @@ export class EthService {
     },
       function(err, res) {
         if (res) {
-          console.log('resolve');
-          resolve('resolve');
+          resolve(res);
         }
         if (err) {
-          console.log('reject');
           reject();
         }
       });
