@@ -116,7 +116,7 @@ export class FbdbService {
    */
   getUserProjects(uid: string) {
     this.projects = [];
-    this.getRefUserProjects(uid).forEach(ref => {
+    this.getRefUserProjects(uid).subscribe(ref => {
       ref.forEach(r => {
         this.getProject(r.key).subscribe(p => {
           this.projects.push(p);
